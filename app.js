@@ -18,9 +18,7 @@ const main = async () => {
 
                 const cards = await searches.searchCard( cardName )
 
-                if (cards === undefined) {
-                    break;
-                }
+                if (cards === undefined) continue
                 
                 const card = await selectOption( cards )
 
@@ -60,7 +58,10 @@ const main = async () => {
 
                 break;
             case 2:
-                log( searches.history )
+                searches.history.forEach( ( card, index ) => {
+                    const idx = `${ index + 1 }.`.bgBlack.green
+                    log( `${ idx } ${ card }` )
+                } )
                 break;
         }
         await pause();
