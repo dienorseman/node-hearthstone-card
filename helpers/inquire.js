@@ -95,30 +95,26 @@ const selectOption = async ( cards = [] ) => {
     return card
 }
 
-const multiSelectTask = async ( tasks = [] ) => {
+const multiSelectCard= async ( cards = [] ) => {
     log()
-    const taskMenu = {
+    const cardMenu = {
         type: 'checkbox',
-        name: 'ids',
-        message: 'Select a task',
-        choices: tasks.map( ( task, i ) => {
+        name: 'cards',
+        message: 'Select cards',
+        choices: cards.map( ( card, i ) => {
             {
                 const index = `${i + 1}`.green
-                const { desc, completedAt } = task
-                const status = completedAt
-                ? 'Completed'.green
-                : 'Pending'.red
+                const { name, type, cardSet} = card
                 return {
-                    value: task.id,
-                    name: `${index} ${desc} ${'::'} ${status}`,
-                    checked: (completedAt) ? true : false
+                    value: card,
+                    name: `${index} ${name} ${'::'} ${type} ${'::'} ${cardSet}`,
                 }
             }
         })
 
     }
-    const { ids } = await inquirer.prompt( taskMenu )
-    return ids
+    const { cards } = await inquirer.prompt( cardMenu )
+    return cards
 }
 
 const confirm = async ( message ) => {
@@ -139,6 +135,6 @@ module.exports = {
     pause,
     readInput,
     selectOption,
-    multiSelectTask,
+    multiSelectCard,
     confirm
 };
