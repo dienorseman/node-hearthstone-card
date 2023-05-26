@@ -99,7 +99,7 @@ const multiSelectCard= async ( cards = [] ) => {
     log()
     const cardMenu = {
         type: 'checkbox',
-        name: 'cards',
+        name: 'cardsSelection',
         message: 'Select cards',
         choices: cards.map( ( card, i ) => {
             {
@@ -113,8 +113,8 @@ const multiSelectCard= async ( cards = [] ) => {
         })
 
     }
-    const { cards } = await inquirer.prompt( cardMenu )
-    return cards
+    const { cardsSelection } = await inquirer.prompt( cardMenu )
+    return cardsSelection
 }
 
 const confirm = async ( message ) => {
