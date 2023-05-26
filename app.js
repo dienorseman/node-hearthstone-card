@@ -4,6 +4,7 @@ const { inquirerMenu, pause, readInput, selectOption } = require('./helpers/inqu
 const Searches = require('./models/searched');
 const cardClassDecoration = require('./helpers/cardClassDecoration');
 const spellSchoolDecoration = require('./helpers/spellSchoolDecoration');
+const { exit } = require('process');
 
 
 const main = async () => {
@@ -17,9 +18,12 @@ const main = async () => {
 
                 const cards = await searches.searchCard( cardName )
 
+                if (cards === undefined) {
+                    break;
+                }
+                
                 const card = await selectOption( cards )
 
-                // log(card)
 
                 if ( card !== null ) {
                     log(`\n Card information \n`.bgGreen.black)

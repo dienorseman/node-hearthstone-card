@@ -43,6 +43,7 @@ class Searches {
             }));
         } catch ( error ) {
             if ( error.response.status === 404 ) {
+                log()
                 log( 'Card not found' );
             }
         }   
